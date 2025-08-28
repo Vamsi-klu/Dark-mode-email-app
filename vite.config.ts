@@ -6,8 +6,15 @@ import { fileURLToPath, URL } from 'node:url'
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: true,
     port: 5173,
-    open: true
+    open: true,
+    strictPort: true
+  },
+  preview: {
+    host: true,
+    port: 5173,
+    strictPort: true
   },
   resolve: {
     alias: {
@@ -15,13 +22,14 @@ export default defineConfig({
     }
   },
   test: {
+    include: ['tests/**/*.{test,spec}.{ts,tsx}'],
     environment: 'jsdom',
     setupFiles: './src/setupTests.ts',
     globals: true,
     coverage: {
       reporter: ['text', 'html', 'json-summary'],
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['src/main.tsx', 'src/types/**/*.ts']
     }
   }
 })
-
-

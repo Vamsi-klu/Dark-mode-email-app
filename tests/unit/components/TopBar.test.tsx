@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
-import { TopBar } from '../TopBar'
+import { TopBar } from 'src/components/TopBar'
 
 describe('TopBar', () => {
   it('updates query on input', () => {
@@ -11,5 +11,4 @@ describe('TopBar', () => {
     expect(onChange).toHaveBeenCalledWith('hello')
   })
 })
-
 

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
-import { MailView } from '../MailView'
+import { MailView } from 'src/components/MailView'
 
 const email: any = {
   id: '1', mailbox: 'inbox', unread: false, subject: 'Subj', snippet: 'Snippet', body: 'Body', date: new Date().toISOString(),
@@ -16,5 +16,4 @@ describe('MailView', () => {
     expect(onReply).toHaveBeenCalled()
   })
 })
-
 

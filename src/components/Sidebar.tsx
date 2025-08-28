@@ -1,7 +1,7 @@
 import React from 'react'
 import { ComposeButton } from './common/Button'
 import { Inbox, Star, Send, FileEdit, Trash2 } from 'lucide-react'
-import type { Mailbox } from '../App'
+import type { Mailbox } from '../types/mail'
 
 type Props = {
   mailbox: Mailbox
@@ -62,5 +62,4 @@ export function Sidebar({ mailbox, onSelectMailbox, onCompose }: Props) {
     </div>
   )
 }
-
 

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
-import { MailList } from '../MailList'
+import { MailList } from 'src/components/MailList'
 
 const sample = [
   {
@@ -18,5 +18,4 @@ describe('MailList', () => {
     expect(onSelect).toHaveBeenCalledWith('a')
   })
 })
-
 

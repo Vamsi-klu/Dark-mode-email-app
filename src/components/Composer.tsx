@@ -13,7 +13,7 @@ export function Composer({ open, onClose }: Props) {
   if (!open) return null
 
   return (
-    <div className="fixed bottom-6 right-6 w-full max-w-xl surface rounded-2xl shadow-premium overflow-hidden">
+    <div className="fixed bottom-6 right-6 w-full max-w-xl surface rounded-2xl shadow-premium overflow-hidden animate-pop-in">
       <header className="px-4 py-3 flex items-center gap-2 border-b border-white/5">
         <div className="font-semibold">New message</div>
         <div className="ml-auto flex items-center gap-1">
@@ -45,5 +45,4 @@ export function Composer({ open, onClose }: Props) {
     </div>
   )
 }
-
 

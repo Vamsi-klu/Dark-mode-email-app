@@ -1,8 +1,7 @@
 import { describe, it, expect } from 'vitest'
-import { filterEmails } from './filter'
-import { mockEmails } from '../mockEmails'
+import { filterEmails } from 'src/lib/filter'
+import { mockEmails } from 'src/mockEmails'
 
-// Additional granular tests to exceed 100 total
 describe('filterEmails granular suite', () => {
   const mailboxes: Array<'inbox' | 'starred' | 'sent' | 'drafts' | 'trash'> = [
     'inbox', 'starred', 'sent', 'drafts', 'trash'
@@ -27,7 +26,6 @@ describe('filterEmails granular suite', () => {
     })
   })
 
-  // Stress with synthetic larger input to ensure function correctness on scale
   it('handles large input sets correctly', () => {
     const big = Array.from({ length: 2000 }).map((_, idx) => ({
       ...mockEmails[0],
@@ -38,7 +36,6 @@ describe('filterEmails granular suite', () => {
     expect(res.length).toBeGreaterThan(0)
   })
 
-  // Generate many tiny invariants
   Array.from({ length: 25 }).forEach((_, idx) => {
     it(`invariant pass-through #${idx + 1}`, () => {
       const res = filterEmails(mockEmails, 'inbox', `no-hit-${idx}`)
@@ -46,5 +43,4 @@ describe('filterEmails granular suite', () => {
     })
   })
 })
-
 

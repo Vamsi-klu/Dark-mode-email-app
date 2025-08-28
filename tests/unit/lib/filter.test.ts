@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { filterEmails, matchesQuery } from './filter'
-import { mockEmails } from '../mockEmails'
+import { filterEmails, matchesQuery } from 'src/lib/filter'
+import { mockEmails } from 'src/mockEmails'
 
 describe('matchesQuery', () => {
   it('returns true when query is empty', () => {
@@ -31,7 +31,6 @@ describe('filterEmails', () => {
     expect(result.some(e => /invoice/i.test(e.subject + e.snippet))).toBe(true)
   })
 
-  // Generate many small granular tests to hit required count
   const queries = Array.from({ length: 60 }, (_, i) => `q${i}`)
   queries.forEach((q, idx) => {
     it(`query case #${idx + 1} safely handles non-matching term '${q}'`, () => {
@@ -41,5 +40,4 @@ describe('filterEmails', () => {
     })
   })
 })
-
 

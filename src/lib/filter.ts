@@ -1,5 +1,5 @@
 import type { Email } from '../mockEmails'
-import type { Mailbox } from '../App'
+import type { Mailbox } from '../types/mail'
 
 export function matchesQuery(email: Email, query: string): boolean {
   if (!query.trim()) return true
@@ -18,5 +18,4 @@ export function filterEmails(
 ): Email[] {
   return emails.filter((e) => e.mailbox === mailbox).filter((e) => matchesQuery(e, query))
 }
-
 

@@ -15,7 +15,7 @@ export function MailList({ emails, selectedId, onSelect }: Props) {
         <button
           key={m.id}
           onClick={() => onSelect(m.id)}
-          className={`w-full text-left px-4 py-3 flex gap-3 items-start transition-colors ${
+          className={`w-full text-left px-4 py-3 flex gap-3 items-start transition-all ${
             selectedId === m.id ? 'bg-white/10' : 'hover:bg-white/5'
           }`}
         >
@@ -34,5 +34,4 @@ export function MailList({ emails, selectedId, onSelect }: Props) {
     </div>
   )
 }
-
 
