@@ -1,4 +1,5 @@
 import type { Mailbox } from './types/mail'
+import type { Label, Attachment, Priority, SnoozeInfo, ScheduledSend } from './types/extended'
 
 export type Email = {
   id: string
@@ -11,6 +12,20 @@ export type Email = {
   date: string
   sender: { name: string; email: string; avatarColor?: string }
   recipients: string[]
+  // New advanced properties
+  cc?: string[]
+  bcc?: string[]
+  labels?: Label[]
+  attachments?: Attachment[]
+  priority?: Priority
+  isRead?: boolean
+  snoozed?: SnoozeInfo
+  scheduled?: ScheduledSend
+  threadId?: string
+  inReplyTo?: string
+  forwarded?: boolean
+  size?: number // bytes
+  hasAttachment?: boolean
 }
 
 export const mockEmails: Email[] = [
@@ -24,7 +39,18 @@ export const mockEmails: Email[] = [
     body: `Hi there,\n\nThanks for being a NovaCloud customer. Your July invoice is attached.\n\nTotal due: $42.00\nDue date: Aug 15\n\nView invoice: https://novacloud.example/invoices/12345\n\n— The NovaCloud Team`,
     date: '2025-07-28T14:21:00Z',
     sender: { name: 'NovaCloud', email: 'billing@novacloud.example', avatarColor: '#3a90ee' },
-    recipients: ['you@example.com']
+    recipients: ['you@example.com'],
+    priority: 'high',
+    labels: [
+      { id: 'l1', name: 'Billing', color: '#3a90ee' },
+      { id: 'l2', name: 'Important', color: '#ff6b6b' }
+    ],
+    attachments: [
+      { id: 'a1', name: 'invoice-july-2025.pdf', size: 245000, type: 'application/pdf' }
+    ],
+    hasAttachment: true,
+    size: 248500,
+    threadId: 't1'
   },
   {
     id: 'm2',
@@ -35,7 +61,12 @@ export const mockEmails: Email[] = [
     body: `Hey,\n\nPushing the handoff to the Drive folder. There are variants for dark mode and motion states.\nLet me know if you need animations exported separately.\n\n— Maya`,
     date: '2025-07-27T09:12:00Z',
     sender: { name: 'Maya Patel', email: 'maya@studio.example', avatarColor: '#12ebd8' },
-    recipients: ['you@example.com']
+    recipients: ['you@example.com'],
+    cc: ['design@example.com'],
+    labels: [{ id: 'l3', name: 'Design', color: '#12ebd8' }],
+    priority: 'normal',
+    size: 12400,
+    threadId: 't2'
   },
   {
     id: 'm3',
@@ -46,7 +77,11 @@ export const mockEmails: Email[] = [
     body: `Your flight has been booked. Confirmation code XK9H2. Boarding begins at 07:35.\n\nSeat 12A, Group 3`,
     date: '2025-07-25T17:02:00Z',
     sender: { name: 'Cascade Air', email: 'no-reply@cascadeair.example', avatarColor: '#1b58b3' },
-    recipients: ['you@example.com']
+    recipients: ['you@example.com'],
+    labels: [{ id: 'l4', name: 'Travel', color: '#1b58b3' }],
+    priority: 'high',
+    size: 8200,
+    threadId: 't3'
   },
   {
     id: 'm4',
@@ -54,10 +89,16 @@ export const mockEmails: Email[] = [
     unread: false,
     subject: 'Re: Q3 roadmap',
     snippet: 'I left comments on sections 2 and 5. Biggest risks are around vendor timelines...',
-    body: `I left comments on sections 2 and 5. Biggest risks are around vendor timelines.\n\nLet’s review live tomorrow.`,
+    body: `I left comments on sections 2 and 5. Biggest risks are around vendor timelines.\n\nLet's review live tomorrow.`,
     date: '2025-07-22T13:45:00Z',
     sender: { name: 'You', email: 'you@example.com', avatarColor: '#93cafa' },
-    recipients: ['product@example.com']
+    recipients: ['product@example.com'],
+    cc: ['team@example.com'],
+    labels: [{ id: 'l5', name: 'Work', color: '#93cafa' }],
+    priority: 'normal',
+    inReplyTo: 'm3-orig',
+    size: 5600,
+    threadId: 't4'
   },
   {
     id: 'm5',
@@ -68,7 +109,11 @@ export const mockEmails: Email[] = [
     body: `Draft: Partnership intro`,
     date: '2025-07-20T08:00:00Z',
     sender: { name: 'You', email: 'you@example.com', avatarColor: '#61aef6' },
-    recipients: ['bizdev@example.com']
+    recipients: ['bizdev@example.com'],
+    labels: [{ id: 'l6', name: 'Drafts', color: '#61aef6' }],
+    priority: 'low',
+    size: 3200,
+    threadId: 't5'
   }
 ]
 
