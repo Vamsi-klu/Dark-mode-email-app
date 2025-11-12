@@ -1,3 +1,3 @@
-export type Mailbox = 'inbox' | 'starred' | 'sent' | 'drafts' | 'trash'
+export type Mailbox = 'inbox' | 'starred' | 'sent' | 'drafts' | 'trash' | 'archive'
 
 

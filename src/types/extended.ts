@@ -62,14 +62,18 @@ export type EmailRule = {
 }
 
 export type SnoozeInfo = {
-  snoozedUntil: string // ISO date
+  snoozedUntil?: string // ISO date (legacy)
+  until?: string // ISO date (new format)
   snoozedAt: string // ISO date
+  reason?: string // Why it was snoozed
 }
 
 export type ScheduledSend = {
-  scheduledFor: string // ISO date
+  scheduledFor?: string // ISO date (legacy)
+  sendAt?: string // ISO date (new format)
   scheduledAt: string // ISO date
-  cancelable: boolean
+  cancelable?: boolean
+  recurring?: 'daily' | 'weekly' | 'monthly' // Recurring schedule
 }
 
 export type DraftState = {
